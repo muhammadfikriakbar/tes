@@ -1,21 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:tes/app/modules/home/views/home_view.dart';
 
+class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Color(0xFFFFFFFF),
-        body: Center(
-          child: Container(
-            width: Get.width * 0.5,
-            height: Get.width * 0.5,
-            child: Image.asset("assets/image/logo.png"),
-          ),
+    Future.delayed(Duration(seconds: 3), () {
+      Get.off(HomeView());
+    });
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlutterLogo(
+              size: 150,
+            ),
+            SizedBox(height: 24),
+            Text(
+              'My App',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
     );

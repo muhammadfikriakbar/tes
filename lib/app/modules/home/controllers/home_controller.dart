@@ -31,6 +31,7 @@ class HomeController extends GetxController {
 
   @override
   void onClose() {
+    controller.dispose();
     super.onClose();
   }
 
@@ -76,7 +77,7 @@ class HomeController extends GetxController {
     skip.value = 0;
     selectedCategoryIndex.value = index;
     category.value = itemCategory[index];
-    final url = Uri.parse('https://dummyjson.com/products/category/$category');
+    final url = Uri.parse('https://dummyjson.com/products/category/${category.value}');
     final response = await http.get(url);
     final json = jsonDecode(response.body);
     if (response.statusCode == 200) {
@@ -91,7 +92,7 @@ class HomeController extends GetxController {
     if (isLoading.value) return;
     isLoading.value = true;
     skip.value += 10;
-    final url = Uri.parse('https://dummyjson.com/products/category/$category?limit=10&skip=$skip');
+    final url = Uri.parse('https://dummyjson.com/products/category/${category.value}?limit=10&skip=$skip');
     final response = await http.get(url);
     final json = jsonDecode(response.body);
     List newItems = json["products"];
@@ -113,7 +114,7 @@ class HomeController extends GetxController {
   Future<void> searchItem(String keyword) async {
     skip.value = 0;
     search.value = keyword;
-    final url = Uri.parse('https://dummyjson.com/products/search?q=$search&limit=10');
+    final url = Uri.parse('https://dummyjson.com/products/search?q=${search.value}&limit=10');
     final response = await http.get(url);
     final json = jsonDecode(response.body);
     if (response.statusCode == 200) {
@@ -128,7 +129,7 @@ class HomeController extends GetxController {
     if (isLoading.value) return;
     isLoading.value = true;
     skip.value += 10;
-    final url = Uri.parse('https://dummyjson.com/products/search?q=$search&limit=10&skip=$skip');
+    final url = Uri.parse('https://dummyjson.com/products/search?q=${search.value}&limit=10&skip=$skip');
     final response = await http.get(url);
     final json = jsonDecode(response.body);
     List newItems = json["products"];

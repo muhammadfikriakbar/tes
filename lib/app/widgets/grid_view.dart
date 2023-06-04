@@ -25,7 +25,7 @@ class MyGridView extends StatelessWidget {
         slivers: [
           SliverGrid(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              childAspectRatio: 0.73,
+              childAspectRatio: 0.68,
               crossAxisCount: 2,
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
